@@ -52,6 +52,10 @@ module instdec_stage(
     assign I_imm3   = 32'(signed'(instrReg3[31:20]));  // sign extended I_immediate to 32-bit
     assign B_imm3	= 32'(signed'({instrReg3[31], instrReg3[7], instrReg3[30:25], instrReg3[11:8], 1'b0 })); //sign extending b_immediate to 32-bit
     assign J_imm3	= 32'(signed'({instrReg3[31], instrReg3[19:12], instrReg3[20], instrReg3[30:21], 1'b0}));
+    assign S_imm3	= 32'(signed'({ instrReg3[31] ,instrReg3[30:25],instrReg3[11:8], instrReg3[7] }));
+	assign U_imm3	= 32'(signed'({ instrReg3[31],instrReg3[30:20],instrReg3[19:12], 12'b0 }));
+	assign J_imm3	= 32'(signed'({ instrReg3[31],instrReg3[19:12],instrReg3[20],instrReg3[30:25],instrReg3[24:21], 1'b0 }));
+
     assign pc3 	= pcReg3;
     
     // instantiate controller
